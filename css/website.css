@@ -1,0 +1,71 @@
+﻿body {
+}
+
+.words-content {
+}
+
+.words-scroll {
+    overflow-y: scroll;
+    max-height: 70vh;
+}
+
+.words-icons {
+    direction: ltr;
+}
+
+.comments-top-header {
+    margin-right: 10px;
+}
+
+.borderBox {
+    display: flex;
+    align-items: center; /* align vertical */
+    width: 100%;
+    min-height: 400px;
+    text-align: center;
+}
+
+.word-name-middle {
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.card-flip-button {
+    margin: 10px;
+}
+
+.badge-size {
+    font-size: 0.9em;
+}
+
+.textbox-hide {
+    display: none;
+}
+
+.displayNone {
+    display: none;
+}
+
+.buttonLinks {
+    color: black;
+    text-decoration: none; /* no underline */
+}
+
+    .buttonLinks:hover {
+        color: black;
+        text-decoration: none; /* no underline */
+    }
+
+.words-content-scroll {
+    overflow-y: scroll;
+    max-height: 40vh;
+}
+
+.carousel .carousel-indicators li {
+    background-color: grey;
+}
+
+    .carousel .carousel-indicators li.active {
+        background-color: black;
+    }
