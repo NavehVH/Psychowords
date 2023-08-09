@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid p-0" dir="rtl" lang="he">
 
+        <!-- home page with user satistics -->
         <h1 class="h3 mb-3">עמוד בית</h1>
 
         <div class="row">

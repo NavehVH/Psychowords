@@ -14,7 +14,7 @@ namespace Psychometric
 {
     public partial class index : System.Web.UI.Page
     {
-        int usersCount = 0, hebrewCount = 0, englishCount = 0, associationsCount = 0, examplesCount = 0, likesCount = 0;
+        int usersCount = 0, hebrewCount = 0, englishCount = 0, associationsCount = 0, examplesCount = 0, likesCount = 0; //website statistics
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,10 +23,11 @@ namespace Psychometric
                 if (!Autorization.CheckAutorization())
                 {
                 }
-                SetCountInfo();
+                SetCountInfo(); //updating satistics on load
             }
         }
 
+        //getting satistics from database
         private void SetCountInfo()
         {
 
@@ -79,6 +80,8 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
                 con.conClose();
             }
 
+            //updating data
+
             //userCountSpan.InnerText = usersCount.ToString();
             hebrewCountSpan.InnerText = hebrewCount.ToString();
             englishCountSpan.InnerText = englishCount.ToString();
@@ -87,6 +90,7 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
             likesCountSpan.InnerText = likesCount.ToString();
         }
 
+        //checking if email is already used
         [WebMethod]
         public static bool IsEmailUsed(string email)
         {
@@ -112,6 +116,7 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
             return used;
         }
 
+        //check if username is used
         [WebMethod]
         public static bool IsUsernameUsed(string username)
         {
@@ -137,6 +142,7 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
             return used;
         }
 
+        //register account without callback
         [WebMethod]
         public static bool RegisterAccountAjax(string username, string password, string email, string firstName, string lastName)
         {
@@ -151,6 +157,7 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
                 MySqlDataReader r = msc.ExecuteReader();
                 if (r.Read())
                 {
+                    //checking if not spamming the register option
                     Accounts lastAcc = new Accounts(r.GetInt32(0));
                     if (lastAcc.Registration_date.AddMinutes(5) > DateTime.UtcNow)
                         registered = true;
@@ -165,6 +172,7 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
             if (registered == true) //Registered in the last 5 mins
                 return false;
 
+            //add new account
             Accounts acc = new Accounts();
             acc.Username = username;
             acc.Password = Security.HashFull(password);
@@ -185,6 +193,8 @@ SELECT COUNT(id) FROM associations WHERE liked_id != 0;
             acc.Verification = random.ToString();
             acc.AddAccount();
 
+
+            //sending email to the new user
             string subject = @"
 ברוך הבא לאתר, 
 " + username + @"!

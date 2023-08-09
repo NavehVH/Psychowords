@@ -8,8 +8,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid p-0" dir="rtl" lang="he">
 
-        <h1 class="h3 mb-3">מילון אישי בעברית</h1>
+        <!--
+            page to control ur words and choose display them
+        -->
 
+        <h1 class="h3 mb-3">מילון אישי בעברית</h1>
+        <!-- options to add stuff -->
         <div class="row">
             <div class="col-md-12 col-xl-6">
                 <div class="card">
@@ -37,7 +41,7 @@
                         </a>
                     </div>
                 </div>
-
+                <!-- my own categories -->
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">קטגוריות</h5>
@@ -68,6 +72,7 @@
                 </div>
             </div>
 
+            <!-- usual categories -->
             <div class="col-sm-12 col-xl-6">
                 <div class="card">
                     <div class="card-header">
@@ -148,7 +153,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal of adding your own category question box -->
     <div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" dir="rtl" lang="he">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -174,5 +179,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="JsHolder" runat="server">
+    <!-- js -->
     <script src="../js-hebrew/deleteCategory.js?2"></script>
 </asp:Content>

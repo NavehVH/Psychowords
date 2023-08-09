@@ -1,4 +1,5 @@
 ﻿
+//deleting category from the database
 function deleteButton(fullId) {
     if (confirm('האם אתה בטוח שתרצה למחוק קטגוריה זו? כל המילים בקטגוריה לא יהיו שייכים לקטגוריה הזו יותר.')) {
         deleteButtonAjax(fullId, function () {
@@ -9,6 +10,7 @@ function deleteButton(fullId) {
     }
 }
 
+//delete category method
 function deleteButtonAjax(fullId, callback) {
     var id = fullId.substring(12);
 
@@ -29,6 +31,7 @@ function deleteButtonAjax(fullId, callback) {
 
 var error = false;
 
+//check a validation if correct
 function ValidationCheck(bool, textBoxElement, validationElement, validationText) {
     if (error == false) {
         if (bool) {
@@ -41,6 +44,7 @@ function ValidationCheck(bool, textBoxElement, validationElement, validationText
     }
 }
 
+//show error on element
 function ValidationError(textBoxElement, validationElement, validationText) {
     validationElement.style.display = "inherit";
     validationElement.className = " text-danger";
@@ -49,18 +53,21 @@ function ValidationError(textBoxElement, validationElement, validationText) {
 
 }
 
+//show success on element
 function ValidationSuccess(textBoxElement, validationElement) {
     validationElement.style.display = "none";
     textBoxElement.className += "form-control CategoryTextBoxClass is-valid";
 }
 
+
+//check if added name of category
 function categoryValidation() {
     error = false;
 
     var CategoryTextBox = document.getElementsByClassName('CategoryTextBoxClass')[0];
     var CategoryhValidation = document.getElementById('categorySpan');
 
-    ValidationCheck(!CategoryTextBox.value.match(/\S/), CategoryTextBox, CategoryhValidation, "לא הכנסת מה לחפש.");
+    ValidationCheck(!CategoryTextBox.value.match(/\S/), CategoryTextBox, CategoryhValidation, "לא הכנסת שם של קטגוריה.");
 
     return !error;
 }

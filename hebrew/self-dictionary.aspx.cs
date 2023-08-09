@@ -22,10 +22,11 @@ namespace Psychometric.master_pages
         {
             if (!IsPostBack)
             {
-                SetCount();
+                SetCount(); //set words info of user on load
             }
         }
 
+        //saving a new custom category to the database
         protected void AddCategoryButton(object sender, EventArgs e)
         {
             Categories c = new Categories();
@@ -36,6 +37,7 @@ namespace Psychometric.master_pages
             CategoryTextBox.Text = "";
         }
 
+        //getting all of the user categories from the database
         public DataTable GetUserCategories()
         {
             DataTable dt;
@@ -55,6 +57,7 @@ namespace Psychometric.master_pages
             return dt;
         }
 
+        //getting the amount of words in the specific category
         public int GetCategoryCount(int categoryId)
         {
             int count = 0;
@@ -80,6 +83,7 @@ namespace Psychometric.master_pages
             return count;
         }
 
+        //deleting a specific category from the database
         [WebMethod]
         public static string DeleteButton(int id)
         {
@@ -101,6 +105,7 @@ namespace Psychometric.master_pages
             return "Done";
         }
 
+        //setting the user data about his words and updating it in the website
         private void SetCount()
         {
             int id = 0;

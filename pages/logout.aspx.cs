@@ -28,11 +28,13 @@ namespace Psychometric.pages
                 Autorization.SessionUsername = null;
 
                 RemoveCookie("PsychometricCookies");
+                //removing session and logging out
                 Session.Abandon();
                 Response.Redirect("../pages/login.aspx");
             }
         }
 
+        //removing the website cookies
         public static void RemoveCookie(string cookieName)
         {
             if (HttpContext.Current.Response.Cookies[cookieName] != null)

@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container-fluid p-0" dir="rtl" lang="he">
-
+        <!-- memorization to pactice words -->
         <h1 class="h3 mb-3">שינון מילים בעברית</h1>
         <input type="hidden" id="Interval" value="<%=IntervalDropDownList.SelectedValue.ToString() %>" />
 
@@ -15,11 +15,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <!-- main buttons -->
                         <div class="words-icons">
                             <button class="btn btn-primary" onclick="return false;" data-toggle="modal" runat="server" id="SettingButton" data-target="#exampleModalCenter"><i class="fas fa-cog"></i></button>
                             <button class="btn btn-primary" id="sessionButton" runat="server" onserverclick="sessionButton_ServerClick">התחל תרגול</button>
                             <button class="btn btn-primary" id="trainButton" runat="server" onserverclick="trainButton_ServerClick">המשך לתרגול שאלות</button>
                         </div>
+                        <!-- card with info -->
                         <div id="memorizationDiv" runat="server">
                             <h4>מופיע לך 8 מילים, תשנן אותם ולאחר מכן תענה על השאלות.</h4>
                             <br />
@@ -222,7 +224,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal to edit practice options -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -295,6 +297,7 @@
     </div>
     <script src="../js-hebrew/memorization.js?2"></script>
     <script>
+        //edit slides speed
         var Interval = document.getElementById('Interval').value;
 
         if (Interval == "false")

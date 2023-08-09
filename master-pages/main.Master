@@ -7,24 +7,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="AdminKit">
-    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
     <link rel="shortcut icon" href="../img/icons/favicon.png" />
     <link href="../assets/img/apple-touch-icon-box.png" rel="apple-touch-icon">
     <link href="../css/website.css" rel="stylesheet" />
     <title>Psychometric</title>
 
+    <!-- js and css-->
     <script src="../js/jQuery.js"></script>
     <link href="../css/app.css" rel="stylesheet" />
 
+    <!-- head masterpage holder -->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
     <div class="wrapper">
+
+        <!-- full sidebar for links-->
+
         <nav id="sidebar" class="sidebar">
             <div class="sidebar-content js-simplebar">
                 <a dir="rtl" lang="he" class="sidebar-brand" href="../index.aspx">
@@ -84,12 +86,15 @@
             </div>
         </nav>
 
+
+        <!-- main page -->
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
                 <a class="sidebar-toggle d-flex">
                     <i class="hamburger align-self-center"></i>
                 </a>
 
+                <!-- search bar HIDDEN -->
                 <form class="d-none d-sm-inline-block displayNone">
                     <div class="input-group input-group-navbar displayNone">
                         <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
@@ -99,6 +104,7 @@
                     </div>
                 </form>
 
+                <!-- alert HIDDEN -->
                 <div class="navbar-collapse collapse displayNone">
                     <ul class="navbar-nav navbar-align">
                         <li class="nav-item dropdown displayNone">
@@ -259,6 +265,8 @@
                     <asp:ScriptManager ID="ScriptManager1"
                         EnablePageMethods="true"
                         EnablePartialRendering="true" runat="server" />
+
+                    <!-- main page content holder -->
                     <div>
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
@@ -266,6 +274,7 @@
                 </form>
             </main>
 
+            <!-- footer -->
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
@@ -297,6 +306,7 @@
         </div>
     </div>
 
+    <!-- js holder -->
     <asp:ContentPlaceHolder ID="JsHolder" runat="server">
     </asp:ContentPlaceHolder>
     <script src="../js/app.js"></script>

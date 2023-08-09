@@ -16,6 +16,7 @@ namespace Psychometric.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if already logged, remove user from the login page
             if (!IsPostBack)
                 if (Autorization.CheckAutorization())
                 {
@@ -23,27 +24,30 @@ namespace Psychometric.pages
                 }
         }
 
+        //dealing with logging button
         protected void ClickLogin(object sender, EventArgs e)
         {
             Accounts acc = new Accounts(UsernameTextBox.Text, Security.HashFull(PasswordTextBox.Text), false);
-            if (acc.Id == 0)
+            if (acc.Id == 0) //account doesn't exist
             {
                 LabelError.Text = "שם משתמש או סיסמה לא נכונים.";
                 return;
             }
 
-            if (acc.Verification != "1")
+            if (acc.Verification != "1") //checking if user verify their email
             {
                 Session["EmailVer"] = acc;
                 Response.Redirect("../pages/verification.aspx");
             }
 
-            if (Autorization.Login(UsernameTextBox.Text, Security.HashFull(PasswordTextBox.Text)))
+            //logged
+            if (Autorization.Login(UsernameTextBox.Text, Security.HashFull(PasswordTextBox.Text))) //checks if info is legin
                 Response.Redirect("../index.aspx");
             else
                 LabelError.Text = "שם משתמש או סיסמה לא נכונים.";
         }
 
+        //sending email to deal if used the forgot pass button
         [WebMethod]
         public static bool ForgotPass_ServerClick(string username, string email)
         {

@@ -1,6 +1,7 @@
 ﻿
 var error = false;
 
+//doing a validation check by given validation, showing if its corrent or not
 function ValidationCheck(bool, textBoxElement, validationElement, validationText) {
     if (error == false) {
         if (bool) {
@@ -13,6 +14,7 @@ function ValidationCheck(bool, textBoxElement, validationElement, validationText
     }
 }
 
+//show error as red
 function ValidationError(textBoxElement, validationElement, validationText) {
     validationElement.style.display = "inherit";
     validationElement.className = " text-danger";
@@ -20,10 +22,12 @@ function ValidationError(textBoxElement, validationElement, validationText) {
 
 }
 
+//remove errors
 function ValidationSuccess(textBoxElement, validationElement) {
     validationElement.style.display = "none";
 }
 
+//checking if the search is valid
 function searchValidation() {
     error = false;
 
@@ -42,11 +46,12 @@ var lastIdElementName = "";
 var lastType = 0;
 var hasWordId = 0;
 
-var modalSpan = document.getElementById('modalSpan');
+var modalSpan = document.getElementById('modalSpan'); //what to write in the save check box
 var wordModalSpan = document.getElementById('wordModalSpan');
-var modalSaveButton = document.getElementById('saveSettings');
+var modalSaveButton = document.getElementById('saveSettings'); //after clicking like, asking if to save
 var wordDefArray = [];
 
+//saving a word u liked
 function likeWord(idElement, type, wordId) {
     modalSaveButton.style.display = "none";
     wordModalSpan.innerHTML = "";
@@ -60,14 +65,14 @@ function likeWord(idElement, type, wordId) {
     lastType = type;
     //Get word info
     getWordInfo(wordId, type, false, function (newHtml) {
-        html = newHtml;
+        html = newHtml; //types (def's for exmaples)
 
         LikeHandleAjax(id, false, lastWordIdLike, lastIdElementName, function () {
-            if (type == 1) {
+            if (type == 1) { //word
                 if (hasWordId != 0) {
-                    wordModalSpan.innerHTML = html;
-                    modalSpan.innerHTML = "לא תוכל להכניס את המילה כי היא כבר קיימת במאגר שלך.";
-                    modalSaveButton.style.display = "none";
+                    wordModalSpan.innerHTML = html; //writing info about the word
+                    modalSpan.innerHTML = "לא תוכל להכניס את המילה כי היא כבר קיימת במאגר שלך."; //message
+                    modalSaveButton.style.display = "none"; //remove button because already have it
                 }
                 else {
                     wordModalSpan.innerHTML = html;
@@ -98,7 +103,7 @@ function likeWord(idElement, type, wordId) {
                     modalSaveButton.style.display = "initial";
                 }
             }
-            else if (type == 3) {
+            else if (type == 3) { //ass' adding check
                 if (hasWordId == 0) {
                     modalSpan.innerHTML = "המילה לא קיימת במאגר שלך, לכן לא תוכל להכניס את האסוציאציה.";
                 }
@@ -113,7 +118,7 @@ function likeWord(idElement, type, wordId) {
                     modalSaveButton.style.display = "initial";
                 }
             }
-            else if (type == 4) {
+            else if (type == 4) { //exa' check
                 if (hasWordId == 0) {
                     modalSpan.innerHTML = "המילה לא קיימת במאגר שלך, לכן לא תוכל להכניס את הדוגמה.";
                 }
@@ -132,6 +137,7 @@ function likeWord(idElement, type, wordId) {
     });
 }
 
+//putting all the word info in a message
 function getWordInfo(wordId, type, myWord, callback) {
     //Get word info
     var html = "";
@@ -153,6 +159,7 @@ function getWordInfo(wordId, type, myWord, callback) {
     });
 }
 
+//saving the info to the database
 function saveButton() {
     LikeHandleAjax(lastLike, true, lastWordIdLike, lastIdElementName, function () {
         wordModalSpan.innerHTML = "";
@@ -161,6 +168,7 @@ function saveButton() {
     });
 }
 
+//handle changing the LIKE display (FULL\NOT FULL) on data changes without refresh
 function LikeHandleAjax(id, enterData, wordId, lastIdElementName, callback) {
 
     var fullHeart = '<i class="fas fa-heart"></i>';
@@ -203,6 +211,7 @@ function LikeHandleAjax(id, enterData, wordId, lastIdElementName, callback) {
     return false;
 }
 
+//getting word info from backend
 function WordInfoAjax(wordId, table, callback) {
 
     try {

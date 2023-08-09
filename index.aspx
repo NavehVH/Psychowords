@@ -14,7 +14,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
+    <!-- Icons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon-box.png" rel="apple-touch-icon">
 
@@ -33,15 +33,11 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
     <form autocomplete="off" class="php-email-form" runat="server">
+        <!-- add AJAX ability -->
         <asp:ScriptManager ID="ScriptManager1"
             EnablePageMethods="true"
             EnablePartialRendering="true" runat="server" />
@@ -50,8 +46,7 @@
             <div class="container d-flex align-items-center">
 
                 <h1 class="logo mr-auto"><a href="index.html"></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                <!-- main navbar options -->
                 <nav class="nav-menu d-none d-lg-block">
                     <ul>
                         <li><a href="#about">עלינו</a></li>
@@ -74,7 +69,7 @@
                         %>
                     </ul>
                 </nav>
-                <!-- .nav-menu -->
+                <!-- .nav for logged users -->
 
                 <%
                     if (Autorization.SessionId == 0)
@@ -88,7 +83,7 @@
         </header>
         <!-- End Header -->
 
-        <!-- ======= Hero Section ======= -->
+        <!-- main screen -->
         <section id="hero" class="align-items-center">
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="70">
                 <div class="row justify-content-center">
@@ -111,11 +106,11 @@
 
             </div>
         </section>
-        <!-- End Hero -->
+        <!-- End main screen -->
 
         <main id="main">
 
-
+            <!-- explaining how the website works -->
             <section id="hero" class="counts section-bg" style="background: none; height: initial">
                 <div class="container">
 
@@ -166,7 +161,7 @@
             </section>
 
 
-            <!-- ======= Counts Section ======= -->
+            <!-- website statistics -->
             <section id="counts" class="counts section-bg">
                 <div class="container">
 
@@ -212,21 +207,18 @@
 
                 </div>
             </section>
-            <!-- End Counts Section -->
+            <!-- End -->
 
 
 
 
-            <!-- ======= Testimonials Section ======= -->
+            <!-- ======= explaining abit about myself and the project ======= -->
             <section id="testimonials" class="testimonials">
                 <div class="container" data-aos="fade-up">
 
                     <div class="section-title">
                         <h2>עליי</h2>
-                        <p style="display: none;">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                     </div>
-
-
 
                     <div class="testimonial-item">
                         <p>
@@ -255,14 +247,14 @@
 
                 </div>
             </section>
-            <!-- End Testimonials Section -->
+            <!-- End -->
 
 
 
 
 
 
-            <!-- ======= About Section ======= -->
+            <!-- Info HIDDEN -->
             <section id="about" class="about" style="display: none;">
                 <div class="container" data-aos="fade-up">
 
@@ -288,8 +280,10 @@
 
                 </div>
             </section>
-            <!-- End About Section -->
-            <!-- ======= About Video Section ======= -->
+            <!-- End -->
+
+
+            <!-- ======= Video about the website HIDDEN ======= -->
             <section id="about-video" class="about-video" style="display: none;">
                 <div class="container" data-aos="fade-up">
 
@@ -318,7 +312,7 @@
 
 
 
-            <!-- ======= Services Section ======= -->
+            <!-- ======= website options explained ======= -->
             <section id="services" class="services section-bg">
                 <div class="container" data-aos="fade-up">
 
@@ -452,7 +446,7 @@
             <!-- End Sevices Section -->
 
 
-            <!-- ======= Frequently Asked Questions Section ======= -->
+            <!-- Frequently Asked Questions Section -->
             <section id="faq" class="faq section-bg" dir="rtl">
                 <div class="container" data-aos="fade-up">
 
@@ -508,7 +502,8 @@
                 </div>
             </section>
             <!-- End Frequently Asked Questions Section -->
-            <!-- ======= Contact Section ======= -->
+
+            <!-- ======= register ======= -->
             <%
                 if (Autorization.SessionId == 0)
                 {
@@ -578,7 +573,7 @@
             %>
 
 
-            <!-- ======= Pricing Section ======= -->
+            <!-- Pricing Section -->
             <section id="pricing" class="pricing">
                 <div class="container" data-aos="fade-up">
 
@@ -643,6 +638,7 @@
 
         </main><!-- End #main -->
 
+
         <!-- ======= Footer ======= -->
         <footer id="footer" style="text-align: right;">
 
@@ -675,10 +671,6 @@
                         &copy; Coded by Naveh. Designed by <strong><span>OnePage</span></strong> Copyright. All Rights Reserved
                     </div>
                     <div class="credits">
-                        <!-- All the links in the footer should remain intact. -->
-                        <!-- You can delete the links only if you purchased the pro version. -->
-                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
                     </div>
                 </div>
             </div>

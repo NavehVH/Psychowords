@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <div class="container-fluid p-0" dir="rtl">
 
         <h1 class="h3 mb-3">הגדרות</h1>
@@ -10,6 +11,7 @@
         <div class="row">
             <div class="col-md-3 col-xl-2">
 
+                <!-- setting options -->
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">הגדרות משתמש</h5>
@@ -26,10 +28,13 @@
                 </div>
             </div>
 
+
             <div class="col-md-9 col-xl-10">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="account" role="tabpanel">
 
+
+                        <!-- user info -->
                         <div class="card">
                             <div class="card-header">
 
@@ -68,6 +73,7 @@
 
                     </div>
 
+                    <!-- change password -->
                     <div class="tab-pane fade" id="password" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
@@ -98,6 +104,7 @@
                         </div>
                     </div>
 
+                    <!-- change email -->
                     <div class="tab-pane fade" id="email" role="tabpanel">
                         <div class="card">
                             <div class="card-body">

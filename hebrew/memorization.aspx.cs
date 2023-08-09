@@ -15,31 +15,35 @@ namespace Psychometric.master_pages
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        public string[][] MyData = null;
-        public List<List<List<string>>> WordData = new List<List<List<string>>>();
+        public string[][] MyData = null; //words to practice data
+        public List<List<List<string>>> WordData = new List<List<List<string>>>(); ////words to practice
 
-        public int OptionsNumber = 0;
+        public int OptionsNumber = 0; //
 
-        public string Interval = "";
+        public string Interval = ""; //slide times
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                //dont show practice card on load
                 trainButton.Visible = false;
 
                 memorizationDiv.Visible = false;
+                //check if logged
                 if (!Autorization.CheckAutorization())
                 {
                     Response.Redirect("../pages/logout.aspx");
                 }
 
+                //getting all user custom categories
                 DataTable Categories = SetAllCategories();
                 foreach (DataRow r in Categories.Rows)
                 {
                     CategoryDropDownList.Items.Add(new ListItem { Text = r[2].ToString(), Value = r[0].ToString() });
                 }
 
+                //adding user settings for this practice
                 IntervalDropDownList.SelectedValue = Session["Interval"].ToString();
                 WordsDropList.SelectedValue = Session["WordsCount"].ToString();
                 CategoryDropDownList.SelectedValue = Session["CategoryToMemory"].ToString();
@@ -49,6 +53,7 @@ namespace Psychometric.master_pages
             Interval = Session["Interval"].ToString();
         }
 
+        //getting dataset of all the user custom categories
         private DataTable SetAllCategories()
         {
             DataTable dt;
@@ -68,6 +73,7 @@ namespace Psychometric.master_pages
             return dt;
         }
 
+        //saving the user setting options he edited
         protected void SaveInfoButton_ServerClick(object sender, EventArgs e)
         {
             HttpCookie cookie = Autorization.NewCookieData();
@@ -86,6 +92,7 @@ namespace Psychometric.master_pages
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
 
+        //getting the data of the words for the practice from backend to frontend using AJAX later
         [WebMethod]
         public string[][] GetData(int optionsNum, string category)
         {
@@ -101,6 +108,7 @@ namespace Psychometric.master_pages
                 con.conOpen();
                 MySqlCommand msc;
 
+                //getting words by specific knowledge of it
                 if (category == "o1")
                     msc = new MySqlCommand("SELECT SQL_NO_CACHE * FROM `words` WHERE username_id = @username_id AND `language` = 'hebrew' ORDER BY RAND() LIMIT @limit");
                 else if (category == "o2")
@@ -117,6 +125,7 @@ namespace Psychometric.master_pages
                     msc.Parameters.AddWithValue("@category_id", int.Parse(category));
                 }
 
+                //setting the words data in an array
                 msc.Connection = con.Con;
                 msc.Parameters.AddWithValue("@username_id", Session["Id"].ToString());
                 msc.Parameters.AddWithValue("@limit", optionsNum);
@@ -144,6 +153,7 @@ namespace Psychometric.master_pages
             return dataArray;
         }
 
+        //pressed button to practice, setting everything up
         protected void sessionButton_ServerClick(object sender, EventArgs e)
         {
             if (MyData == null)
@@ -157,6 +167,7 @@ namespace Psychometric.master_pages
                     return;
                 }
 
+                //setting chhosen words
                 WordData.Add(new List<List<string>>()); //def
                 WordData.Add(new List<List<string>>()); //exa
                 WordData.Add(new List<List<string>>()); //ass
@@ -180,7 +191,8 @@ namespace Psychometric.master_pages
                 HttpContext.Current.Session["Memory"] = MyData;
             }
         }
-
+        
+        //practicing the words in question page session
         protected void trainButton_ServerClick(object sender, EventArgs e)
         {
             HttpContext.Current.Session["MemoryBool"] = true;

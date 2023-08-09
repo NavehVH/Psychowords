@@ -12,16 +12,18 @@ namespace Psychometric.master_pages
     public partial class WebForm5 : System.Web.UI.Page
     {
 
-        int allWords, knownWords, almostKnownWords, unknownWords, wordsLiked;
+        int allWords, knownWords, almostKnownWords, unknownWords, wordsLiked; //user satistics vars
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //setting the count on login
             if (!IsPostBack)
             {
                 SetCount();
             }
         }
 
+        //getting user satistics from database and setting it
         private void SetCount()
         {
             int id = 0;

@@ -16,7 +16,7 @@ namespace Psychometric.master_pages
 {
     public partial class WebForm7 : System.Web.UI.Page
     {
-
+        //data of search vars
         public DataTable WordsTable;
         public DataTable DefinitionsTable;
         public DataTable AssociationsTable;
@@ -29,10 +29,13 @@ namespace Psychometric.master_pages
         {
             if (!IsPostBack)
             {
+                //checking if logged
                 if (!Autorization.CheckAutorization())
                 {
                     Response.Redirect("../pages/logout.aspx");
                 }
+
+                //reset search data on load
 
                 //SearchPanel.Visible = false;
                 WordsTable = null;
@@ -45,6 +48,7 @@ namespace Psychometric.master_pages
             }
         }
 
+        //clicking search button and showing search results
         protected void SearchClick(object sender, EventArgs e)
         {
             string SearchValue = SearchTextBox.Value;
@@ -58,10 +62,12 @@ namespace Psychometric.master_pages
             GlobalDictionaryPanel.Update();
         }
 
+        //getting the wanted info by given word
         public DataTable GetTypeBySearch(string searchValue, string table)
         {
             DataTable dt;
             Connection c = new Connection();
+            //getting info from the database
             try
             {
                 c.conOpen();
@@ -87,6 +93,7 @@ WHERE w.word like @type AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0, 5
                 c.conClose();
             }
 
+            //showing the currect table
             if (dt.Rows.Count == 0)
             {
                 if (table == "associations")
@@ -104,6 +111,7 @@ WHERE w.word like @type AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0, 5
             return dt;
         }
 
+        //example for myself
         /*
          
         SELECT ass.*, a.total 
@@ -117,10 +125,12 @@ FROM associations ass
          
          */
 
+        //getting words from database by given word search
         public DataTable GetWordsBySearch(string searchValue)
         {
             DataTable dt;
             Connection c = new Connection();
+            //finding the info about the word from the database
             try
             {
                 c.conOpen();
@@ -139,13 +149,14 @@ WHERE w.word LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0,
     c.Con);
                 msc.Parameters.AddWithValue("@search", "%" + searchValue + "%");
                 DataSet ds = c.getDataSet(msc, "words");
-                dt = ds.Tables["words"];
+                dt = ds.Tables["words"]; //updating table with found search info
             }
             finally
             {
                 c.conClose();
             }
 
+            //show table
             if (dt.Rows.Count == 0)
                 WordsEmptySpan.Visible = true;
             else
@@ -154,6 +165,7 @@ WHERE w.word LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0,
             return dt;
         }
 
+        //not used
         public string CheckLikes(string likes)
         {
             if (likes == "" || likes == null)
@@ -162,6 +174,7 @@ WHERE w.word LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0,
                 return likes;
         }
 
+        //getting the definition string by given wordId
         public DataTable GetDefinitionByWord(int wordId)
         {
             DataTable dt;
@@ -181,6 +194,7 @@ WHERE w.word LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC LIMIT 0,
             return dt;
         }
 
+        //get definition by search from definition
         public DataTable GetDefinitionsBySearch(string searchValue)
         {
             DataTable dt;
@@ -217,6 +231,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //not used
         public DataTable GetAssociationsBySearch2(string searchValue)
         {
             DataTable dt;
@@ -236,6 +251,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //not used
         public DataTable GetExamplesBySearch2(string searchValue)
         {
             DataTable dt;
@@ -255,6 +271,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //adding the info of the search found into arrays to be able to transfer it from backend to frontend with AJAX
         public static List<string> GetInfoByWord(int wordId, string table)
         {
             DataTable dt = GetTable(table, wordId);
@@ -287,9 +304,10 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return list;
         }
 
-        private static DataTable GetTable(string table, int id)
+        //getting a given table with all the words with the specific ID
+        private static DataTable GetTable(string table, int wordId)
         {
-            Words w = new Words(id); //Exists
+            Words w = new Words(wordId); //Exists
             DataTable dt;
             Connection c = new Connection();
             try
@@ -307,6 +325,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //getting a given table with all the words with the specific ID (from liked words)
         private static DataTable GetTableLikes(string table, int id)
         {
             Words w = new Words(id); //Exists
@@ -327,6 +346,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //getting table info from wordId, But based on most liked 
         private static DataTable GetTableWithLikesCount(string table, int id)
         {
             Words w = new Words(id); //Exists
@@ -348,6 +368,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return dt;
         }
 
+        //returns a word based on its ID from database
         public Words GetWordById(int id)
         {
             Words w = new Words(id);
@@ -355,7 +376,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
         }
 
 
-
+        //getting likes amount of specific type and id
         public int GetTypeLikesCount(int id, string table)
         {
             int count = 0;
@@ -380,18 +401,19 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return count;
         }
 
+        //getting associations by search
         public DataTable GetAssociationsBySearch(string searchValue)
         {
-            DataTable words = GetWordsBySearch(searchValue);
+            DataTable words = GetWordsBySearch(searchValue); //search data
             DataTable dt = new DataTable();
 
-            foreach (DataRow wordRow in words.Rows)
+            foreach (DataRow wordRow in words.Rows) //merging with liked type
             {
                 dt.Merge(GetTableWithLikesCount("associations", int.Parse(wordRow[0].ToString())));
             }
 
             if (dt.Select("", "total DESC").Length > 0)
-                return dt.Select("", "total DESC").CopyToDataTable();
+                return dt.Select("", "total DESC").CopyToDataTable(); //returning data by DESC order
             else
             {
                 dt.Clear();
@@ -399,6 +421,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             }
         }
 
+        //not used
         public List<Examples> GetExamplesBySearch(string searchValue)
         {
             List<Examples> exaList = new List<Examples>();
@@ -415,6 +438,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             return exaList;
         }
 
+        //if liked an ass, add it to user data
         [WebMethod]
         public static void LikeAssAjax(int wordId, int assId)
         {
@@ -431,6 +455,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             ass.AddAssociation();
         }
 
+        //if liked an exa, add it to user data
         [WebMethod]
         public static void LikeExaAjax(int wordId, int exaId)
         {
@@ -447,6 +472,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             newE.AddExample();
         }
 
+        //if liked a def, add it to user data
         [WebMethod]
         public static void LikeDefinitionAjax(int wordId, int definitionId, bool withWord)
         {
@@ -455,6 +481,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
 
             Words word = new Words();
 
+            //word doesn't exist yet, add it with word
             if (withWord)
             {
                 word.Username_id = int.Parse(HttpContext.Current.Session["Id"].ToString());
@@ -476,7 +503,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
                 newD.Liked_id = likedDefinition.Id;
                 newD.AddDefinition();
             }
-            else
+            else //have the world already, add definition
             {
                 Definitions newD = new Definitions();
                 newD.Username_id = int.Parse(HttpContext.Current.Session["Id"].ToString());
@@ -489,6 +516,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             }
         }
 
+        //liked a word, add it to the user data
         [WebMethod]
         public static void LikeWordAjax(int id)
         {
@@ -505,10 +533,10 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             newWord.Liked_id = w.Id;
             newWord.AddWord();
 
-            w.GetFullInfo(); //Getting needed info
+            w.GetFullInfo(); //Getting needed info (#TODO only need def', change that(?))
             Definitions def;
 
-            //Adding likes to all definitions
+            //Adding likes to all definitions inside the word
             foreach (Definitions d in w.DefinitionsList)
             {
                 def = new Definitions();
@@ -521,7 +549,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
                 def.AddDefinition();
             }
 
-            //Adding likes to all definitions
+            //Adding likes to all definitions inside the word
             foreach (Definitions l in w.DefinitionsLikesList)
             {
                 def = new Definitions();
@@ -535,6 +563,7 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
             }
         }
 
+        //getting user word id, by word
         [WebMethod]
         public static int GetWordIdByNameAjax(int id)
         {
@@ -544,12 +573,14 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
 
         }
 
+        //getting all the info from backend to frontend
         [WebMethod]
         public static string[] GetInfoByWordAjax(int wordId, string table)
         {
             return GetInfoByWord(wordId, table).ToArray();
         }
 
+        //searching by subject button
         protected void SubjectButton_Click(object sender, EventArgs e)
         {
             string SearchValue = SearchTextBox.Value;
@@ -559,19 +590,20 @@ WHERE ass.definition LIKE @search AND ass.liked_Id = 0 ORDER BY a.liked_id DESC 
 
             if (SelectList.SelectedIndex > -1)
             {
-                if (SelectList.SelectedIndex == 0)
+                if (SelectList.SelectedIndex == 0) //selected first option, most popular
                 {
                     WordsTable = GetWordsMostPopular();
                 }
                 else
                 {
-                    WordsTable = GetWordsByLetter(SelectList.Items[SelectList.SelectedIndex].Text);
+                    WordsTable = GetWordsByLetter(SelectList.Items[SelectList.SelectedIndex].Text); //getting words by choosen letter
                 }
             }
 
-            GlobalDictionaryPanel.Update();
+            GlobalDictionaryPanel.Update(); //update table
         }
-
+        
+        //getting results by given letter
         public DataTable GetWordsByLetter(string searchValue)
         {
             DataTable dt;
@@ -608,6 +640,7 @@ WHERE w.word LIKE @search AND ass.liked_Id = 0 ORDER BY a.total DESC LIMIT 0, 10
             return dt;
         }
 
+        //getting results by most popular words
         public DataTable GetWordsMostPopular()
         {
             DataTable dt;

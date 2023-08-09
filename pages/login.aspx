@@ -27,7 +27,9 @@
                     <i class="fas fa-chevron-left align-middle align-self-center"></i>
                 </a>
             </nav>
+            
 
+            <!-- form to login -->
             <main class="content">
                 <form id="form1" runat="server">
                     <asp:ScriptManager ID="ScriptManager1"
@@ -92,6 +94,7 @@
         </div>
     </div>
     <script>
+        //sending email if clicked forgot password
         function sendEmailQuestion() {
 
             var username = prompt("הכנס את שם המשתמש שלך", "");
@@ -112,6 +115,7 @@
             }
         }
 
+        //getting the ForgotPass from backend
         function forgotPass_ServerClickAjax(username, email, callback) {
 
             try {

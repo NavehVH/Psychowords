@@ -14,6 +14,7 @@ namespace Psychometric.master_pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if user is not logged, return him to login page, else session login
             if (!IsPostBack)
             {
                 if (!Autorization.CheckAutorization())

@@ -15,24 +15,27 @@ namespace Psychometric.master_pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //checking if user is logged
             if (!Autorization.CheckAutorization())
             {
                 Response.Redirect("../pages/logout.aspx");
             }
 
+            //adding user data
             if (!IsPostBack)
             {
-                Accounts acc = (Accounts)Session["Account"];
+                Accounts acc = (Accounts)Session["Account"]; //user info
                 Username.InnerText = acc.Username;
                 FirstName.InnerText = acc.First_name;
                 LastName.InnerText = acc.Last_name;
                 Email.InnerText = acc.Email.Substring(4) + "****";
                 RegistrationDate.InnerText = acc.Registration_date.ToString("dd/MM/yyyy");
-                DatePurchase.InnerText = "Null";
-                PurchasedFor.InnerText = "0";
+                DatePurchase.InnerText = "Null"; //DIDNT ADD
+                PurchasedFor.InnerText = "0"; //DIDNT ADD
             }
         }
 
+        //getting used email
         [WebMethod]
         public static string GetCurrentEmail()
         {
@@ -40,6 +43,7 @@ namespace Psychometric.master_pages
             return acc.Email;
         }
 
+        //checking if same password
         [WebMethod]
         public static bool GetCurrentPassword(string pass)
         {
@@ -47,6 +51,7 @@ namespace Psychometric.master_pages
             return (Security.HashFull(pass) == acc.Password);
         }
 
+        //checking if email is used
         [WebMethod]
         public static bool IsEmailUsed(string email)
         {
@@ -72,6 +77,7 @@ namespace Psychometric.master_pages
             return used;
         }
 
+        //update email to the database
         [WebMethod]
         public static void UpdateEmail(string newEmail)
         {
@@ -79,6 +85,7 @@ namespace Psychometric.master_pages
             acc.Email = newEmail;
         }
 
+        //update password to the database
         [WebMethod]
         public static void UpdatePassword(string newPassowrd)
         {
@@ -86,6 +93,7 @@ namespace Psychometric.master_pages
             acc.Password = Security.HashFull(newPassowrd);
         }
 
+        //send email if forgot password
         [WebMethod]
         public static bool ForgotPass_ServerClick(string username, string email)
         {

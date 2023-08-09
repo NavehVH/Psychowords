@@ -1,4 +1,7 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+﻿
+//came with the bootstrap
+
+document.addEventListener("DOMContentLoaded", function () {
 	// Line chart
 	new Chart(document.getElementById("chartjs-line"), {
 		type: "line",

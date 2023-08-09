@@ -53,7 +53,7 @@ namespace Psychometric.master_pages
                 Response.Redirect("../hebrew/self-dictionary.aspx");
             }
 
-            if (CurrentWordTable != null)
+            if (CurrentWordTable != null && CurrentWordTable.Rows.Count != 0)
             {
                 allWordsSpan.InnerText = CurrentWordTable.Rows.Count.ToString();
 

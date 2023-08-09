@@ -4,13 +4,21 @@
 <%@ Import Namespace="System.Data" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- css -->
     <link href="../css/website.css" rel="stylesheet">
     <!--
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     -->
 </asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <!-- 
+        page to search globally words in HEBREW
+        -->
+
     <asp:UpdatePanel ID="GlobalDictionaryPanel" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="SearchButton" EventName="serverclick" />
@@ -29,6 +37,7 @@
                             <div class="card-body">
                                 <h5>חיפוש</h5>
 
+                                <!-- search bar -->
                                 <div class="input-group input-group-navbar">
                                     <input type="text" class="form-control SearchTextBoxClass" placeholder="חיפוש" aria-label="Search" id="SearchTextBox" runat="server">
                                     <button id="SearchButton" runat="server" class="btn" type="button" onserverclick="SearchClick" onclientclick="return searchValidation(); __doPostBack('SearchButton',''">
@@ -39,6 +48,7 @@
                                 <div>
                                     <hr />
                                     <br />
+                                    <!-- search words by subject -->
                                     <h5>נושא:</h5>
                                     <select multiple class="form-control" runat="server" id="SelectList">
                                         <option>מילים הכי פופולריות</option>
@@ -72,10 +82,12 @@
                             </div>
                         </div>
                     </div>
+                    <!-- main -->
                     <div id="SearchPanel" class="col-md-12 col-xl-9" runat="server">
                         <div class="tab-content">
                             <div class="tab-pane fade show active" role="tabpanel">
                                 <div class="card">
+                                    <!-- choose by what to search -->
                                     <div class="card-header">
                                         <ul class="nav nav-pills card-header-pills pull-right" role="tablist">
                                             <li class="nav-item">
@@ -92,6 +104,7 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    <!-- show search by words -->
                                     <div class="card-body">
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="tab-4" role="tabpanel">
@@ -150,7 +163,7 @@
                                             </div>
 
 
-
+                                            <!-- show search by definitions -->
                                             <div class="tab-pane fade" id="tab-5" role="tabpanel">
                                                 <h5 class="card-title">מילים</h5>
                                                 <h6 class="card-subtitle text-muted">חיפוש לפי פירושים <strong runat="server" id="DefsEmptySpan">(לא נמצא מידע לחיפוש שלך)</strong></h6>
@@ -190,6 +203,7 @@
                                                 </div>
                                             </div>
 
+                                            <!-- show ass' search by words -->
                                             <div class="tab-pane fade" id="tab-6" role="tabpanel">
                                                 <h5 class="card-title">מילים</h5>
                                                 <h6 class="card-subtitle text-muted">חיפוש אסוציאציות לפי מילים <strong runat="server" id="AssEmptySpan">(לא נמצא מידע לחיפוש שלך)</strong></h6>
@@ -228,7 +242,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-
+                                            <!-- show search of exmaples by words -->
                                             <div class="tab-pane fade" id="tab-7" role="tabpanel">
                                                 <h5 class="card-title">מילים</h5>
                                                 <h6 class="card-subtitle text-muted">חיפוש דוגמאות לפי מילים <strong runat="server" id="ExaEmptySpan">(לא נמצא מידע לחיפוש שלך)</strong></h6>
@@ -279,7 +293,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-    <!-- Modal -->
+    <!-- not used -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

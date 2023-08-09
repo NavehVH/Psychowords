@@ -2,6 +2,7 @@
 
 var error = false;
 
+//a method to check if the given validation check cause an error or not, and notify user with a message
 function ValidationCheck(bool, textBoxElement, validationElement, validationText) {
 
     var hasError = false;
@@ -29,6 +30,7 @@ function ValidationCheck(bool, textBoxElement, validationElement, validationText
     }
 }
 
+//show red colors on error
 function ValidationError(textBoxElement, validationElement, validationText, classString) {
     validationElement.style.display = "inherit";
     validationElement.className = " text-danger";
@@ -39,6 +41,7 @@ function ValidationError(textBoxElement, validationElement, validationText, clas
 
 }
 
+//show green colors on success
 function ValidationSuccess(textBoxElement, validationElement, classString) {
     validationElement.style.display = "none";
 
@@ -46,17 +49,20 @@ function ValidationSuccess(textBoxElement, validationElement, classString) {
     textBoxElement.className = classString;
 }
 
+//check if email is written correctly
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
+//user inputs
 var emailInputs = document.getElementsByClassName('emailInputs');
 var inputEmailCurrent = document.getElementById('inputEmailCurrent');
 var inputEmailNew = document.getElementById('inputEmailNew');
 var inputEmailNew2 = document.getElementById('inputEmailNew2');
 var emailButtonV = document.getElementById('emailButtonV');
 
+//check if the change email the user put is valid, if so change it
 function validEmailCheck() {
     var waitingAjax = 0;
 
@@ -64,6 +70,7 @@ function validEmailCheck() {
     for (var i = 0; i < emailInputs.length; i++)
         emailInputs[i].classList = "form-control emailInputs";
 
+    //js checks
     ValidationCheck(!inputEmailCurrent.value.match(/\S/), inputEmailCurrent, document.getElementById(inputEmailCurrent.id + "V"), "לא הכנסת את המידע.");
     ValidationCheck(!inputEmailNew.value.match(/\S/), inputEmailNew, document.getElementById(inputEmailNew.id + "V"), "לא הכנסת את המידע.");
     ValidationCheck(!inputEmailNew2.value.match(/\S/), inputEmailNew2, document.getElementById(inputEmailNew2.id + "V"), "לא הכנסת את המידע.");
@@ -75,6 +82,7 @@ function validEmailCheck() {
     ValidationCheck(inputEmailCurrent.value == inputEmailNew.value, inputEmailNew, document.getElementById(inputEmailNew.id + "V"), "האימייל החדש שהכנסת זהה לישן.");
     ValidationCheck(inputEmailNew.value != inputEmailNew2.value, inputEmailNew2, document.getElementById(inputEmailNew2.id + "V"), "האימייל החדש שהכנסת והאימייל הזה לא זהים.");
 
+    //AJAX database method checks
     getCurrentEmailAjax(function (result) {
         ValidationCheck(inputEmailCurrent.value != result, inputEmailCurrent, document.getElementById(inputEmailCurrent.id + "V"), "האימייל שהכנסת אינו נכון.");
 
@@ -93,6 +101,7 @@ function validEmailCheck() {
     return false;
 }
 
+//getting current email
 function getCurrentEmailAjax(callback) {
 
     try {
@@ -109,6 +118,7 @@ function getCurrentEmailAjax(callback) {
     return false;
 }
 
+//getting current hashed pass
 function getCurrentPasswordAjax(pass, callback) {
 
     try {
@@ -125,6 +135,7 @@ function getCurrentPasswordAjax(pass, callback) {
     return false;
 }
 
+//checking if email is used
 function isEmailUsedAjax(email, callback) {
     try {
         PageMethods.IsEmailUsed(email, onSucess, onError);
@@ -140,6 +151,7 @@ function isEmailUsedAjax(email, callback) {
     return false;
 }
 
+//updating given email to database
 function updateEmailAjax(newEmail, callback) {
 
     try {
@@ -156,6 +168,7 @@ function updateEmailAjax(newEmail, callback) {
     return false;
 }
 
+//updating hashed password to database
 function updatePasswordAjax(newPassword, callback) {
 
     try {
@@ -172,12 +185,14 @@ function updatePasswordAjax(newPassword, callback) {
     return false;
 }
 
+//user password inputs
 var passwordInputs = document.getElementsByClassName('passwordInputs');
 var inputPasswordCurrent = document.getElementById('inputPasswordCurrent');
 var inputPasswordNew = document.getElementById('inputPasswordNew');
 var inputPasswordNew2 = document.getElementById('inputPasswordNew2');
 var passwordButtonV = document.getElementById('passwordButtonV');
 
+//check if user password info is valid, if it is change it
 function validPasswordCheck() {
 
     var waitingAjax = 0;
@@ -186,6 +201,7 @@ function validPasswordCheck() {
     for (var i = 0; i < passwordInputs.length; i++)
         passwordInputs[i].classList = "form-control passwordInputs";
 
+    //basic js checks
     ValidationCheck(!inputPasswordCurrent.value.match(/\S/), inputPasswordCurrent, document.getElementById(inputPasswordCurrent.id + "V"), "לא הכנסת את המידע.");
     ValidationCheck(!inputPasswordNew.value.match(/\S/), inputPasswordNew, document.getElementById(inputPasswordNew.id + "V"), "לא הכנסת את המידע.");
     ValidationCheck(!inputPasswordNew2.value.match(/\S/), inputPasswordNew2, document.getElementById(inputPasswordNew2.id + "V"), "לא הכנסת את המידע.");
@@ -194,6 +210,7 @@ function validPasswordCheck() {
 
     ValidationCheck(inputPasswordNew.value != inputPasswordNew2.value, inputPasswordNew2, document.getElementById(inputPasswordNew2.id + "V"), "סיסמה זאת אינה תואמת לסיסמה החדשה שהכנסת.");
 
+    //database backend checks and updating method
     getCurrentPasswordAjax(inputPasswordCurrent.value, function (result) {
         ValidationCheck(!result, inputPasswordCurrent, document.getElementById(inputPasswordCurrent.id + "V"), "הסיסמה שהכנסת אינה נכונה.");
 
@@ -208,6 +225,7 @@ function validPasswordCheck() {
     return false;
 }
 
+//getting new password to email if forgot one
 function sendEmailQuestion() {
 
     var username = prompt("הכנס את שם המשתמש שלך", "");
@@ -228,6 +246,7 @@ function sendEmailQuestion() {
     }
 }
 
+//getting method forgotPass from backend
 function forgotPass_ServerClickAjax(username, email, callback) {
 
     try {

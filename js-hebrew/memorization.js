@@ -1,12 +1,15 @@
 ﻿
-var Interval = document.getElementById('Interval').value;
+
+var Interval = document.getElementById('Interval').value; //time between slides
 var cardsFront = document.getElementsByClassName('card-front');
 var cardsBack = document.getElementsByClassName('card-back');
 
+//fliping if needed
 if (cardsFront != null && Interval != "false") {
     autoFlip();
 }
 
+//function to flip the card on command
 function flipCard(clicked) {
     var activeCard = 0;
     var elements = document.getElementsByClassName('carousel-li');
@@ -36,6 +39,7 @@ function flipCard(clicked) {
     }
 }
 
+//getting data of words from backend
 function setData() {
     try {
         PageMethods.GetData(4, onSucess, onError);
@@ -51,8 +55,10 @@ function setData() {
     return false;
 }
 
+
 var interval = document.getElementById('carouselExampleIndicators');
 
+//auto flip from inverval time (?)
 function autoFlip() {
     for (var i = 0; i < cardsFront.length; i++) {
         cardsFront[i].className = "card-front displayNone";
