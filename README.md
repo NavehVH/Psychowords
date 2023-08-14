@@ -31,7 +31,7 @@
 - ניתן לעשות fork או להוריד את הקבצים כרצונכם, אני משתמש בVS19. <br/>
 - הוספתי לפרוייקט לreferences שאפשר למצוא בתקיית DLLs.
 - באתר אני משתמש בMYSQL לאחסון נתונים, ניתן למצוא את הconnection string ולערוך אותו כרצונכם. הוא נמצא בApp_Data/Connections.cs. אני קראתי למוסד הנתונים בשם psychometry_data.<br/>
-(אני רגיל להשתמש בXAMPP בשביל להשיג חיבור לPORT המתאים לחיבור מוצלח לMYSQL.<br/>
+(אני רגיל להשתמש בXAMPP בשביל להשיג חיבור לPORT המתאים לחיבור מוצלח לMYSQL)<br/>
 לינק לגיבוי של המוסד נתונים: https://mega.nz/file/IhMFCR6J#mMlIF7xp88X7g30Du4lj7NTSJ-rWr1lYR6TZuAOCxhc
 <br/><br/>
 הגיבוי נקי ורק הוספתי שם משתמש אחד:<br/>
