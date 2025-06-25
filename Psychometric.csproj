@@ -175,7 +175,7 @@
     <Content Include="img\photos\unsplash-1.jpg" />
     <Content Include="img\photos\unsplash-2.jpg" />
     <Content Include="img\photos\unsplash-3.jpg" />
-    <Content Include="termofservice.aspx" />
+    <Content Include="pages\termofservice.aspx" />
     <Content Include="index.aspx" />
     <Content Include="js-english\add-word.js" />
     <Content Include="js-english\deleteCategory.js" />
@@ -380,11 +380,11 @@
     <Compile Include="english\words-content.aspx.designer.cs">
       <DependentUpon>words-content.aspx</DependentUpon>
     </Compile>
-    <Compile Include="termofservice.aspx.cs">
+    <Compile Include="pages\termofservice.aspx.cs">
       <DependentUpon>termofservice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="termofservice.aspx.designer.cs">
+    <Compile Include="pages\termofservice.aspx.designer.cs">
       <DependentUpon>termofservice.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
@@ -573,7 +573,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="aspnet_client\system_web\4_0_30319\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -14,9 +14,6 @@ namespace Psychometric.App_Data
 
         public Connection()
         {
-            //string connString = "server=" + Security.SERVER + "; userid=" + Security.USER_ID + ";password=" + Security.PASSWORD + "; database=" + Security.DATABASE + ";Convert Zero Datetime=True; ;Allow User Variables=True;CHARSET=utf8;";
-            //string connString = "server='localhost'; userid='root';password=''; database=" + Security.DATABASE + ";Convert Zero Datetime=True; ;Allow User Variables=True;CHARSET=utf8;";
-            //string connString = "server='mysql5046.site4now.net'; userid='a884d9_psy';password='qwer1234'; database='db_a884d9_psy';Convert Zero Datetime=True; ;Allow User Variables=True;CHARSET=utf8;";
             string connString = "server='localhost'; userid='root';password=''; database='psychometry_data';Convert Zero Datetime=True; ;Allow User Variables=True;CHARSET=utf8;";
             this.con = new MySqlConnection(connString);
         }
