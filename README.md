@@ -58,4 +58,97 @@ You can filter and view your words in various ways:
 
 This flexibility gives you full control over what to focus on next.
 
+## Global Dictionary
+
+The Global Dictionary gives you access to the entire collection of words added by all users — no page reloads required. It's designed to be fast, searchable, and highly interactive.
+
+You can:
+- Browse the most popular words  
+- Filter words alphabetically (A, B, C, ...)  
+- Search across definitions, associations, and examples  
+- View content added by other users, ordered by number of likes  
+
+Found something useful? With one click, you can add any public word — or parts of it — to your own dictionary.
+
+This shared space makes it easy to discover new vocabulary, see how others think about words, and expand your knowledge beyond your own list.
+
+## Practice Words
+
+Once you've added words, assigned their familiarity status, and organized them into categories, you can start practicing through a flexible multiple-choice quiz system.
+
+In the settings, you can customize your quiz to match your learning goals:
+- Choose how many answer options to include (from 1 to 10) to adjust the difficulty
+- Select specific word groups to focus your practice
+
+Available filters include:
+- All words  
+- Words I know  
+- Words I barely know  
+- Words I don’t know  
+- Words from a specific category  
+
+This makes it easy to run highly targeted practice sessions, focusing only on the words you need to reinforce.
+
+## Memorization of Words
+
+This feature is similar to the multiple-choice quiz, but with a more memory-focused approach.
+
+You begin with a set of flashcards (5–15 words) that you can flip to reveal definitions. Take your time reviewing the cards until you feel confident. Once you're ready, you'll move on to the next stage — a multiple-choice quiz based on the same words — to reinforce what you've just memorized.
+
+The goal is to improve retention by combining passive review with active recall.
+
+Additional settings let you customize the experience:
+- Choose how many words to review at once
+- Enable auto-flip and timed transitions between cards
+- Show example sentences or personal associations when flipping, if desired
+
+This method is especially effective for building long-term memory in a focused and efficient way — especially when you can choose exactly which words to practice.
+
+## Settings
+
+The Settings page allows you to manage your personal account details.
+
+You can:
+- View your current user information
+- Change your password
+- Update your email address
+
+These options give you full control over your account and allow you to keep your information up to date as needed.
+
+## Technologies Used
+
+- **C# and ASP.NET** – Used for building the backend logic and server-side functionality  
+- **AJAX** – Enables smooth interaction with the backend without requiring full page reloads  
+- **MySQL** – Serves as the relational database for storing user data, words, definitions, and progress  
+- **HTML, CSS, Bootstrap, JavaScript** – Used for building a responsive and user-friendly frontend
+
+## How to Use / Run
+
+You can either fork this repository or download the files directly. The project was developed using **Visual Studio 2019**.
+
+### Project Setup
+The project includes several `.DLL` files required for compilation, which are already referenced and located in the `DLLs` folder.
+
+### Database Configuration
+This project uses **MySQL** to store all application data.  
+You can find and update the connection string in the following file:  
+`App_Data/Connections.cs`
+
+The default database name used is: `psychometry_data`
+
+> Note: I personally use **XAMPP** to run a local MySQL server on the correct port (usually 3306), which allows a successful connection between the app and the database.
+
+### Database Backup
+
+A clean backup of the database is available here:  
+[Download MySQL Backup (MEGA link)](https://mega.nz/file/IhMFCR6J#mMlIF7xp88X7g30Du4lj7NTSJ-rWr1lYR6TZuAOCxhc)
+
+This backup includes one default test user:
+- **Username:** `admin`  
+- **Password:** `11111111`
+
+Once your database is restored and the connection string is configured, simply run the project in Visual Studio.
+
+The site should now be fully functional and connected to your local MySQL instance.
+
 
