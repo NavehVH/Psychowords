@@ -1,6 +1,7 @@
 # Psychowords  
 A smart, feature-rich web app for mastering vocabulary for the Israeli Psychometric exam — designed to help you memorize words in the most effective way possible.
-(some picture to choose of start)
+
+![start gif](https://i.imgur.com/3SiPkT6.mp4)
 
 ## Motivation  
 I took the psychometric exam in March 2021. I had enrolled in one of the big-name prep courses in Israel, but their vocabulary practice tool was disappointing — just a basic four-choice random quiz with no real learning strategy.
@@ -34,6 +35,8 @@ Words can be organized into custom categories to match your study style. For exa
 
 At the bottom of the page, you can also view and edit the last 10 words you added, making it easy to refine or update entries on the fly.
 
+![new word](https://i.imgur.com/pvO6LhT.png)
+
 ## Personal Dictionary
 
 The Personal Dictionary is where all the words you've added are displayed in a clean, easy-to-navigate interface. Each word entry includes your custom definition, example, and personal association — all visible at a glance.
@@ -58,6 +61,8 @@ You can filter and view your words in various ways:
 
 This flexibility gives you full control over what to focus on next.
 
+![personal](https://i.imgur.com/r6xlv7y.png)
+
 ## Global Dictionary
 
 The Global Dictionary gives you access to the entire collection of words added by all users — no page reloads required. It's designed to be fast, searchable, and highly interactive.
@@ -71,6 +76,8 @@ You can:
 Found something useful? With one click, you can add any public word — or parts of it — to your own dictionary.
 
 This shared space makes it easy to discover new vocabulary, see how others think about words, and expand your knowledge beyond your own list.
+
+![global](https://i.imgur.com/2eA2HPX.png)
 
 ## Practice Words
 
@@ -89,6 +96,8 @@ Available filters include:
 
 This makes it easy to run highly targeted practice sessions, focusing only on the words you need to reinforce.
 
+![image](https://github.com/user-attachments/assets/0e443cde-1650-4ea0-917a-a638ddc50d6d)
+
 ## Memorization of Words
 
 This feature is similar to the multiple-choice quiz, but with a more memory-focused approach.
@@ -102,7 +111,11 @@ Additional settings let you customize the experience:
 - Enable auto-flip and timed transitions between cards
 - Show example sentences or personal associations when flipping, if desired
 
+![settings](https://i.imgur.com/jgwLw4I.png)
+
 This method is especially effective for building long-term memory in a focused and efficient way — especially when you can choose exactly which words to practice.
+
+![memory](https://i.imgur.com/XE5KSAy.png)
 
 ## Settings
 
