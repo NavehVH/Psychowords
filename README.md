@@ -1,7 +1,7 @@
 # Psychowords  
 A smart, feature-rich web app for mastering vocabulary for the Israeli Psychometric exam — designed to help you memorize words in the most effective way possible.
 
-![start gif](https://i.imgur.com/3SiPkT6.mp4)
+![gif](assets/chome_ibwsAlujSB.gif)
 
 ## Motivation  
 I took the psychometric exam in March 2021. I had enrolled in one of the big-name prep courses in Israel, but their vocabulary practice tool was disappointing — just a basic four-choice random quiz with no real learning strategy.
